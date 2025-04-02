@@ -19,3 +19,26 @@ addBookToLibrary("test", "John", "32 pages", "read", crypto.randomUUID());
 addBookToLibrary("test2", "Marc", "50 pages", "not read", crypto.randomUUID());
 addBookToLibrary("test3", "Alice", "74 pages", "read", crypto.randomUUID());
 console.log(myLibrary);
+ 
+
+myLibrary.forEach (book => {
+  let div = document.createElement("div");
+  div.classList.add("card");
+  document.querySelector(".main").appendChild(div);
+  let h3 = document.createElement("h3");
+  h3.setAttribute("id", "title");
+  h3.textContent = book.title;
+  div.appendChild(h3);
+  let h4 = document.createElement("h4");
+  h4.setAttribute("id", "author");
+  h4.textContent = book.author;
+  div.appendChild(h4);
+  let pLength = document.createElement("p");
+  pLength.setAttribute("id", "length");
+  pLength.textContent = book.length;
+  div.appendChild(pLength);
+  let pStatus = document.createElement("p");
+  pStatus.setAttribute("id", "status");
+  pStatus.textContent = book.status;
+  div.appendChild(pStatus);
+})
