@@ -25,6 +25,9 @@ myLibrary.forEach (book => {
   let div = document.createElement("div");
   div.classList.add("card");
   document.querySelector(".main").appendChild(div);
+  let img = document.createElement("img");
+  img.src = 'assets/book-cover-placeholder-hd.png';
+  div.appendChild(img);
   let h3 = document.createElement("h3");
   h3.setAttribute("id", "title");
   h3.textContent = book.title;
