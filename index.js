@@ -16,11 +16,9 @@ function addBookToLibrary(title, author, length, status, cover, id) {
   return myLibrary.push(book);
 }
 
-addBookToLibrary("test", "John", "32 pages", "read", "", crypto.randomUUID());
-addBookToLibrary("test2", "Marc", "50 pages", "not read", "", crypto.randomUUID());
-addBookToLibrary("test3", "Alice", "74 pages", "read", "", crypto.randomUUID());
-console.log(myLibrary);
- 
+addBookToLibrary("The Stranger", "Albert Camus", "159 pages", "read", "assets/The-Stranger.jpg", crypto.randomUUID());
+addBookToLibrary("Moby-Dick", "Herman Melville", "635 pages", "not read", "assets/Moby-Dick_FE_title_page.jpg", crypto.randomUUID());
+addBookToLibrary("Don Quixote", "Miguel de Cervantes", "1072 pages", "not read", "assets/don-quixote.jpg", crypto.randomUUID());
 
 myLibrary.forEach (book => {
   let div = document.createElement("div");
