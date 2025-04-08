@@ -23,6 +23,7 @@ addBookToLibrary("Don Quixote", "Miguel de Cervantes", "1072 pages", "not read",
 myLibrary.forEach (book => {
   let div = document.createElement("div");
   div.classList.add("card");
+  div.setAttribute("unique-id", book.id);
   document.querySelector(".main").appendChild(div);
   let img = document.createElement("img");
   if (book.cover === '') {
