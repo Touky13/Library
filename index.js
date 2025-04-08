@@ -77,9 +77,10 @@ cancel.addEventListener ("click", () => {
 });
 
 form.addEventListener ("submit", (e) => {
-  addBookToLibrary(title.value, author.value, length.value, status.value, cover.value, crypto.randomUUID());
+  addBookToLibrary(title.value, author.value, length.value, status.value, cover.value, id = crypto.randomUUID());
   let div = document.createElement("div");
   div.classList.add("card");
+  div.setAttribute("unique-id", id);
   document.querySelector(".main").appendChild(div);
   let img = document.createElement("img");
   if (cover.value === '') {
@@ -109,4 +110,5 @@ form.addEventListener ("submit", (e) => {
   event.preventDefault();
   bookForm.close();
   console.log(myLibrary);
+
 });
