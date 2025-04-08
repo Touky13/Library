@@ -30,7 +30,7 @@ body {
     padding-left: 2.5rem;
 }
 
-.card {
+.card, .new-card {
     display: grid;
     grid-template-columns: 1fr 4fr;
     grid-template-rows: repeat(4, 1fr);
@@ -41,8 +41,18 @@ body {
     box-shadow: 2px 2px 7px 0px #666;
 }
 
-.card:hover {
+.main button {
+    grid-column: 1 / -1;
+    width: max-content;
+    padding: 0.5rem 1rem;
+}
+
+.card:hover, .new-card:hover {
     transform: scale(1.2);
+}
+
+.new-card {
+    order: 99;
 }
 
 #author {

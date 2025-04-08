@@ -47,3 +47,57 @@ myLibrary.forEach (book => {
   pStatus.textContent = book.status;
   div.appendChild(pStatus);
 })
+
+const addBook = document.getElementById("add-book");
+const bookForm = document.getElementById("book-form");
+const cover = document.getElementById("cover");
+const title = document.getElementById("title");
+const author = document.getElementById("author");
+const length = document.getElementById("length");
+const status = document.getElementById("read");
+const form = document.querySelector("form");
+const cancel = document.querySelector("#cancel");
+
+addBook.addEventListener ("click", () => {
+  bookForm.showModal();
+});
+
+cancel.addEventListener ("click", () => {
+  event.preventDefault();
+  bookForm.close();
+});
+
+form.addEventListener ("submit", () => {
+  addBookToLibrary(title, author, length, status);
+  let div = document.createElement("div");
+  div.classList.add("card");
+  document.querySelector(".main").appendChild(div);
+  let img = document.createElement("img");
+  if (cover.value === '') {
+  img.src = 'assets/book-cover-placeholder-hd.png';
+  } else { img.src = cover.value };
+  div.appendChild(img);
+  let h3 = document.createElement("h3");
+  h3.setAttribute("id", "title");
+  h3.textContent = title.value;
+  div.appendChild(h3);
+  let h4 = document.createElement("h4");
+  h4.setAttribute("id", "author");
+  h4.textContent = author.value;
+  div.appendChild(h4);
+  let pLength = document.createElement("p");
+  pLength.setAttribute("id", "length");
+  pLength.textContent = length.value;
+  div.appendChild(pLength);
+  let pStatus = document.createElement("p");
+  pStatus.setAttribute("id", "status");
+  if (status.checked) {
+    pStatus.textContent = status.value;
+  } else {
+    pStatus.textContent = "not read"
+  };
+  div.appendChild(pStatus);
+  event.preventDefault();
+  console.log(myLibrary);
+});
+

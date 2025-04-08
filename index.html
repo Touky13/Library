@@ -13,6 +13,38 @@
     </div>
 
     <div class="main">
+        <dialog id="book-form">
+            <form>
+                <p>
+                    <label for="cover">Book cover :</label>
+                    <input type="url" name = "cover" id="cover">
+                </p>
+                <p>
+                    <label for="title">* Book title :</label>
+                    <input type="text" name = "title" id="title" required>
+                </p>
+                <p>
+                    <label for="author">* Book author :</label>
+                    <input type="text" name = "author" id="author" required>
+                </p>
+                <p>
+                    <label for="length">Book length :</label>
+                    <input type="text" name = "length" id="length">
+                </p>
+                <p>
+                    <input type="radio" name = "status" id="read" value="read" checked>
+                    <label for="read">read</label>
+                    <input type="radio" name = "status" id="not-read" value="not read" checked>
+                    <label for="not-read">not read</label>
+                </p>
+                <div>
+                    <button id="cancel" value="cancel" formmethod="dialog" formnovalidate>Cancel</button>
+                    <button id="confirm" value="default">Confirm</button>
+                </div>
+            </form>
+        </dialog>
+        <button id="add-book">New book</button>
+        <div class="new-card">Add a book</div>
     </div>
 
     <div class="footer">
