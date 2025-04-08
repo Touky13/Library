@@ -72,8 +72,8 @@ cancel.addEventListener ("click", () => {
   bookForm.close();
 });
 
-form.addEventListener ("submit", () => {
-  addBookToLibrary(title, author, length, status, cover);
+form.addEventListener ("submit", (e) => {
+  addBookToLibrary(title.value, author.value, length.value, status.value, cover.value, crypto.randomUUID());
   let div = document.createElement("div");
   div.classList.add("card");
   document.querySelector(".main").appendChild(div);
