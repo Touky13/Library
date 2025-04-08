@@ -46,6 +46,9 @@ myLibrary.forEach (book => {
   pStatus.setAttribute("id", "status");
   pStatus.textContent = book.status;
   div.appendChild(pStatus);
+  let del = document.createElement("button");
+  del.setAttribute("id", "delete-button");
+  div.appendChild(del);
 })
 
 const addBook = document.getElementById("add-book");

@@ -32,13 +32,29 @@ body {
 
 .card, .new-card {
     display: grid;
-    grid-template-columns: 1fr 4fr;
+    grid-template-columns: 1fr 4fr 16px;
     grid-template-rows: repeat(4, 1fr);
     align-items: center;
     column-gap: 1rem;
     height: 150px;
     background-color: beige;
     box-shadow: 2px 2px 7px 0px #666;
+}
+
+#delete-button {
+    background-image: url("assets/bin-svgrepo-com.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding: 8px;
+    border: 0px;
+    align-self: start;
+    opacity: 50%;
+    grid-column: 3 / 4;
+    grid-row: 1 / -1;
+}
+
+#delete-button:hover {
+    opacity: 120%;
 }
 
 .main button {
