@@ -56,9 +56,14 @@ const author = document.getElementById("author");
 const length = document.getElementById("length");
 const status = document.getElementById("read");
 const form = document.querySelector("form");
+const addBookAlt = document.querySelector(".new-card");
 const cancel = document.querySelector("#cancel");
 
 addBook.addEventListener ("click", () => {
+  bookForm.showModal();
+});
+
+addBookAlt.addEventListener ("click", () => {
   bookForm.showModal();
 });
 
@@ -68,7 +73,7 @@ cancel.addEventListener ("click", () => {
 });
 
 form.addEventListener ("submit", () => {
-  addBookToLibrary(title, author, length, status);
+  addBookToLibrary(title, author, length, status, cover);
   let div = document.createElement("div");
   div.classList.add("card");
   document.querySelector(".main").appendChild(div);
@@ -98,6 +103,6 @@ form.addEventListener ("submit", () => {
   };
   div.appendChild(pStatus);
   event.preventDefault();
+  bookForm.close();
   console.log(myLibrary);
 });
-
