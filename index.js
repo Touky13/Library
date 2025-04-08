@@ -107,8 +107,12 @@ form.addEventListener ("submit", (e) => {
     pStatus.textContent = "not read"
   };
   div.appendChild(pStatus);
+  let del = document.createElement("button");
+  del.setAttribute("id", "delete-button");
+  div.appendChild(del);
   event.preventDefault();
   bookForm.close();
+  form.reset();
   console.log(myLibrary);
-
 });
+
