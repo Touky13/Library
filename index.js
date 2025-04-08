@@ -23,7 +23,7 @@ addBookToLibrary("Don Quixote", "Miguel de Cervantes", "1072 pages", "not read",
 myLibrary.forEach (book => {
   let div = document.createElement("div");
   div.classList.add("card");
-  div.setAttribute("unique-id", book.id);
+  div.setAttribute("data-uniqueId", book.id);
   document.querySelector(".main").appendChild(div);
   let img = document.createElement("img");
   if (book.cover === '') {
@@ -80,7 +80,7 @@ form.addEventListener ("submit", (e) => {
   addBookToLibrary(title.value, author.value, length.value, status.value, cover.value, id = crypto.randomUUID());
   let div = document.createElement("div");
   div.classList.add("card");
-  div.setAttribute("unique-id", id);
+  div.setAttribute("data-uniqueId", id);
   document.querySelector(".main").appendChild(div);
   let img = document.createElement("img");
   if (cover.value === '') {
@@ -114,5 +114,21 @@ form.addEventListener ("submit", (e) => {
   bookForm.close();
   form.reset();
   console.log(myLibrary);
+  document.querySelectorAll(".card").forEach(toDeleteID => {
+    toDeleteID.addEventListener ("click", function (e) {
+      let target = e.target;
+      if (target.id.includes("delete-button")) {
+      e.currentTarget.remove();
+      }
+    });
+  });
 });
 
+document.querySelectorAll(".card").forEach(toDeleteID => {
+  toDeleteID.addEventListener ("click", function (e) {
+    let target = e.target;
+    if (target.id.includes("delete-button")) {
+    e.currentTarget.remove();
+    }
+  });
+});
