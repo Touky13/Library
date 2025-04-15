@@ -114,21 +114,22 @@ form.addEventListener ("submit", (e) => {
   bookForm.close();
   form.reset();
   console.log(myLibrary);
-  document.querySelectorAll(".card").forEach(toDeleteID => {
-    toDeleteID.addEventListener ("click", function (e) {
-      let target = e.target;
-      if (target.id.includes("delete-button")) {
-      e.currentTarget.remove();
-      }
-    });
-  });
 });
 
-document.querySelectorAll(".card").forEach(toDeleteID => {
-  toDeleteID.addEventListener ("click", function (e) {
-    let target = e.target;
-    if (target.id.includes("delete-button")) {
-    e.currentTarget.remove();
+const main = document.querySelector(".main");
+
+main.addEventListener("click", (e) => {
+  let target = e.target;
+  console.log(target);
+  if (target.tagName != "BUTTON") return;
+  else  {
+    let cardTarget = e.target.closest(".card");
+    console.log(cardTarget);
+    let bookErase = myLibrary.findIndex(object => {
+      return object.id === cardTarget.dataset.uniqueid;
+    });
+    console.log(bookErase);
+    myLibrary.splice(bookErase, 1);
+    cardTarget.remove();
     }
   });
-});
