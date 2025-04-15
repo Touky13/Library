@@ -16,10 +16,6 @@ function addBookToLibrary(title, author, length, status, cover, id) {
   return myLibrary.push(book);
 }
 
-Book.prototype.readStatus = function () {
-  return this.status;
-}
-
 addBookToLibrary("The Stranger", "Albert Camus", "159 pages", "read", "assets/The-Stranger.jpg", crypto.randomUUID());
 addBookToLibrary("Moby-Dick", "Herman Melville", "635 pages", "not read", "assets/Moby-Dick_FE_title_page.jpg", crypto.randomUUID());
 addBookToLibrary("Don Quixote", "Miguel de Cervantes", "1072 pages", "not read", "assets/don-quixote.jpg", crypto.randomUUID());
@@ -43,16 +39,22 @@ myLibrary.forEach (book => {
   h4.setAttribute("id", "author");
   h4.textContent = book.author;
   div.appendChild(h4);
-  let pLength = document.createElement("p");
+  let pLength = document.createElement("span");
   pLength.setAttribute("id", "length");
   pLength.textContent = book.length;
   div.appendChild(pLength);
   let pStatus = document.createElement("details");
+  let pDetails = document.createElement("p");
   let summary = document.createElement("summary");
   summary.textContent = book.status;
   pStatus.setAttribute("id", "status");
-  pStatus.textContent = book.status;
+  if (summary.textContent === "read") {
+    pDetails.textContent = "not read"
+  } else {
+    pDetails.textContent = "read"
+  }
   div.appendChild(pStatus);
+  pStatus.appendChild(pDetails);
   pStatus.appendChild(summary);
   let del = document.createElement("button");
   del.setAttribute("id", "delete-button");
@@ -142,5 +144,25 @@ main.addEventListener("click", (e) => {
     console.log(bookErase);
     myLibrary.splice(bookErase, 1);
     cardTarget.remove();
+    }
+  });
+
+main.addEventListener("click", (e) => {
+  let target = e.target;
+  console.log(target);
+  if (target.tagName != "P") return;
+  else  {
+    let cardTarget = e.target.closest(".card");
+    console.log(cardTarget);
+    if (cardTarget.querySelector("summary").textContent === "read") {
+      cardTarget.querySelector("summary").textContent = "not read";
+      cardTarget.querySelector("p").textContent = "read";
+    } else {
+      cardTarget.querySelector("summary").textContent = "read";
+      cardTarget.querySelector("p").textContent = "not read";
+    }
+    //let read = myLibrary.findIndex(object => {
+      //return object.id === cardTarget.dataset.uniqueid;
+    //});
     }
   });
