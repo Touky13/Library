@@ -16,6 +16,10 @@ function addBookToLibrary(title, author, length, status, cover, id) {
   return myLibrary.push(book);
 }
 
+Book.prototype.readStatus = function () {
+  return this.status;
+}
+
 addBookToLibrary("The Stranger", "Albert Camus", "159 pages", "read", "assets/The-Stranger.jpg", crypto.randomUUID());
 addBookToLibrary("Moby-Dick", "Herman Melville", "635 pages", "not read", "assets/Moby-Dick_FE_title_page.jpg", crypto.randomUUID());
 addBookToLibrary("Don Quixote", "Miguel de Cervantes", "1072 pages", "not read", "assets/don-quixote.jpg", crypto.randomUUID());
@@ -43,10 +47,13 @@ myLibrary.forEach (book => {
   pLength.setAttribute("id", "length");
   pLength.textContent = book.length;
   div.appendChild(pLength);
-  let pStatus = document.createElement("p");
+  let pStatus = document.createElement("details");
+  let summary = document.createElement("summary");
+  summary.textContent = book.status;
   pStatus.setAttribute("id", "status");
   pStatus.textContent = book.status;
   div.appendChild(pStatus);
+  pStatus.appendChild(summary);
   let del = document.createElement("button");
   del.setAttribute("id", "delete-button");
   div.appendChild(del);
@@ -58,10 +65,14 @@ const cover = document.getElementById("cover");
 const title = document.getElementById("title");
 const author = document.getElementById("author");
 const length = document.getElementById("length");
-const status = document.getElementById("read");
 const form = document.querySelector("form");
 const addBookAlt = document.querySelector(".new-card");
 const cancel = document.querySelector("#cancel");
+
+function showStatus() {
+  const bookStatus = document.querySelector('input[name="status"]:checked').value;
+  return bookStatus;
+}
 
 addBook.addEventListener ("click", () => {
   bookForm.showModal();
@@ -77,7 +88,7 @@ cancel.addEventListener ("click", () => {
 });
 
 form.addEventListener ("submit", (e) => {
-  addBookToLibrary(title.value, author.value, length.value, status.value, cover.value, id = crypto.randomUUID());
+  addBookToLibrary(title.value, author.value, length.value, showStatus(), cover.value, id = crypto.randomUUID());
   let div = document.createElement("div");
   div.classList.add("card");
   div.setAttribute("data-uniqueId", id);
@@ -101,8 +112,8 @@ form.addEventListener ("submit", (e) => {
   div.appendChild(pLength);
   let pStatus = document.createElement("p");
   pStatus.setAttribute("id", "status");
-  if (status.checked) {
-    pStatus.textContent = status.value;
+  if (document.getElementById('read').checked) {
+    pStatus.textContent = "read";
   } else {
     pStatus.textContent = "not read"
   };
