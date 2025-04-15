@@ -71,6 +71,26 @@ body {
     order: 99;
 }
 
+#overlay {
+    background-color: rgba(0,0,0,0.25);
+    opacity: 50%;
+    color: black;
+    min-height: 100%;
+    grid-area: span 4 / span 3;
+}
+
+#overlay p {
+    text-align: center;
+    vertical-align: middle;
+    line-height: 150px;
+    font-size: 5rem;
+    color: black;
+}
+
+#overlay:hover {
+    opacity: 100%;
+}
+
 #author {
     font-style: italic;
 }

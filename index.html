@@ -20,16 +20,16 @@
                     <input type="url" name = "cover" id="cover" placeholder="https://www.book-cover.jpg">
                 </p>
                 <p>
-                    <label for="title">* Book title :</label>
-                    <input type="text" name = "title" id="title" required>
+                    <label for="title">Book title *:</label>
+                    <input type="text" name = "title" id="title" placeholder="Foundation" required>
                 </p>
                 <p>
-                    <label for="author">* Book author :</label>
-                    <input type="text" name = "author" id="author" required>
+                    <label for="author">Book author :</label>
+                    <input type="text" name = "author" id="author" placeholder="Isaac Asimov">
                 </p>
                 <p>
                     <label for="length">Book length :</label>
-                    <input type="text" name = "length" id="length">
+                    <input type="text" name = "length" id="length" placeholder="255 pages">
                 </p>
                 <p>
                     <input type="radio" name = "status" id="read" value="read" checked>
@@ -44,7 +44,11 @@
             </form>
         </dialog>
         <button id="add-book">New book</button>
-        <div class="new-card">Add a book</div>
+        <div class="new-card">
+            <div id="overlay">
+                <p>+</p>
+            </div>
+        </div>
     </div>
 
     <div class="footer">
