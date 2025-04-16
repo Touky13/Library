@@ -5,6 +5,8 @@
 
 body {
     height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .header {
@@ -12,9 +14,21 @@ body {
     align-items: center;
     background-color: beige;
     height: 10%;
+    min-height: 80px;
+    min-width: 250px;
     padding-left: 4rem;
     margin-bottom: 3rem;
     box-shadow: 0px -7px 20px 0px #666;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: beige;
+    height: 2.5rem;
+    width: 100%;
+    font-weight: bold;
 }
 
 .header p {
@@ -25,9 +39,11 @@ body {
 .main {
     display: grid;
     grid-template-columns: repeat(auto-fit, 300px);
-    grid-template-rows: max-content;
+    grid-template-rows: repeat(3, max-content);
     gap: 3rem;
     padding-left: 2.5rem;
+    padding-bottom: 2.5rem;
+    flex-grow: 1;
 }
 
 .card, .new-card {

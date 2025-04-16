@@ -70,6 +70,7 @@ const length = document.getElementById("length");
 const form = document.querySelector("form");
 const addBookAlt = document.querySelector(".new-card");
 const cancel = document.querySelector("#cancel");
+const main = document.querySelector(".main");
 
 function showStatus() {
   const bookStatus = document.querySelector('input[name="status"]:checked').value;
@@ -108,18 +109,23 @@ form.addEventListener ("submit", (e) => {
   h4.setAttribute("id", "author");
   h4.textContent = author.value;
   div.appendChild(h4);
-  let pLength = document.createElement("p");
+  let pLength = document.createElement("span");
   pLength.setAttribute("id", "length");
   pLength.textContent = length.value;
   div.appendChild(pLength);
-  let pStatus = document.createElement("p");
+  let pStatus = document.createElement("details");
+  let pDetails = document.createElement("p");
+  let summary = document.createElement("summary");
+  summary.textContent = showStatus();
   pStatus.setAttribute("id", "status");
-  if (document.getElementById('read').checked) {
-    pStatus.textContent = "read";
+  if (summary.textContent === "read") {
+    pDetails.textContent = "not read"
   } else {
-    pStatus.textContent = "not read"
-  };
+    pDetails.textContent = "read"
+  }
   div.appendChild(pStatus);
+  pStatus.appendChild(pDetails);
+  pStatus.appendChild(summary);
   let del = document.createElement("button");
   del.setAttribute("id", "delete-button");
   div.appendChild(del);
@@ -129,19 +135,14 @@ form.addEventListener ("submit", (e) => {
   console.log(myLibrary);
 });
 
-const main = document.querySelector(".main");
-
 main.addEventListener("click", (e) => {
   let target = e.target;
-  console.log(target);
   if (target.tagName != "BUTTON") return;
   else  {
     let cardTarget = e.target.closest(".card");
-    console.log(cardTarget);
     let bookErase = myLibrary.findIndex(object => {
       return object.id === cardTarget.dataset.uniqueid;
     });
-    console.log(bookErase);
     myLibrary.splice(bookErase, 1);
     cardTarget.remove();
     }
@@ -149,20 +150,27 @@ main.addEventListener("click", (e) => {
 
 main.addEventListener("click", (e) => {
   let target = e.target;
-  console.log(target);
   if (target.tagName != "P") return;
   else  {
     let cardTarget = e.target.closest(".card");
-    console.log(cardTarget);
     if (cardTarget.querySelector("summary").textContent === "read") {
       cardTarget.querySelector("summary").textContent = "not read";
       cardTarget.querySelector("p").textContent = "read";
+      let switchStatus = myLibrary.findIndex(object => {
+        return object.id === cardTarget.dataset.uniqueid;
+      });
+      myLibrary[switchStatus].status = "not read";
+      let details = e.target.closest("details");
+      details.removeAttribute("open");
     } else {
       cardTarget.querySelector("summary").textContent = "read";
       cardTarget.querySelector("p").textContent = "not read";
+      let switchStatus = myLibrary.findIndex(object => {
+        return object.id === cardTarget.dataset.uniqueid;
+      });
+      myLibrary[switchStatus].status = "read";
+      let details = e.target.closest("details");
+      details.removeAttribute("open");
     }
-    //let read = myLibrary.findIndex(object => {
-      //return object.id === cardTarget.dataset.uniqueid;
-    //});
     }
   });
